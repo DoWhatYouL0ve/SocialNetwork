@@ -1,0 +1,7 @@
+.dialog {
+
+}
+
+.dialog_items .active {
+    color: orange;
+}

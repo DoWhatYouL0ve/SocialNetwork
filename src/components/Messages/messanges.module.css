@@ -1,0 +1,14 @@
+.dialogs {
+    display: flex;
+}
+
+.dialog_items {
+    width: 20%;
+    padding: 10px;
+}
+
+
+
+.dialog_items .active {
+    color: orange;
+}
