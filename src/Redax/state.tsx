@@ -29,15 +29,8 @@ export type StateType = {
     messagesPage: MessagesPageType
 }
 
-export type AddPostActiontype = {
-    type: 'ADD-POST'
-}
-export type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
-export type ActionTypes = AddPostActiontype | UpdateNewPostTextActionType
+// an example of auto type difinition for our action creator functions
+export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreater>
 
 
 export type StoreType = {
@@ -47,6 +40,9 @@ export type StoreType = {
     getState: () => StateType
     dispatch: (action: ActionTypes) => void
 }
+
+export const ADD_POST = 'ADD-POST'
+export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
 export let store: StoreType = {
     _state: {
@@ -86,7 +82,7 @@ export let store: StoreType = {
     this._callSubscriber = observer // pattern observer похож на pattern publisher
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost: PostMessageType = {
                 id: 5,
                 postMessage: this._state.profilePage.newPostText,
@@ -95,9 +91,20 @@ export let store: StoreType = {
             this._state.profilePage.postMessageData.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber()
-        }else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        }else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText =  action.newText
             this._callSubscriber()
         }
     }
+}
+
+//an example if you need to refactor a function with an object inside and "as const" in the end
+export const addPostActionCreator = () => ({type: ADD_POST} as const)
+
+
+export const updateNewPostTextActionCreater = (newText: string) => {
+    return{
+        type: UPDATE_NEW_POST_TEXT,
+        newText: newText
+    } as const
 }
