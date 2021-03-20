@@ -8,12 +8,11 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./components/News/news";
 import {Music} from "./components/Music/music";
 import {Settings} from "./components/Settings/settings";
-import {StateType} from "./Redax/state";
+import {ActionTypes, StateType} from "./Redax/state";
 
 type AppPropsType = {
     store: StateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 //взять шаблон для соц сети и делать под него проект
@@ -26,8 +25,7 @@ function App(props: AppPropsType) {
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route path={'/profile'}
-                           render={ () => <Profile profilePage={props.store.profilePage} addPost={props.addPost}
-                                                   updateNewPostText={props.updateNewPostText}/>}/>
+                           render={ () => <Profile profilePage={props.store.profilePage} dispatch={props.dispatch}/>}/>
                     <Route path={'/messages'}
                            render={() => <Messages messagesPage={props.store.messagesPage} />}/>
                     <Route path={'/news'} render={() => <News />}/>

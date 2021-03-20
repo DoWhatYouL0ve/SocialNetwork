@@ -1,14 +1,13 @@
 import React, {ChangeEvent} from "react";
 import c from './myposts.module.css'
 import {Post} from './Post/post'
-import {PostMessageType} from "../../../Redax/state";
+import {ActionTypes, PostMessageType, UpdateNewPostTextActionType} from "../../../Redax/state";
 
 
 type MyPostPropsType = {
     postMessageData: Array<PostMessageType>
-    addPost: () => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 export const MyPosts = (props: MyPostPropsType) => {
@@ -16,11 +15,14 @@ export const MyPosts = (props: MyPostPropsType) => {
     let postData = props.postMessageData.map( p => <Post postMessage={p.postMessage} like={p.like}/>)
 
     let addPost = () => {
-            props.addPost()
+        // first method to set action
+            props.dispatch({type: 'ADD-POST'})
     }
 
     const newPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value)
+        // second method to set action
+        let action: UpdateNewPostTextActionType = {type: 'UPDATE-NEW-POST-TEXT', newText: e.currentTarget.value}
+        props.dispatch(action)
     }
 
     return (

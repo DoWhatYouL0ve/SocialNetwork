@@ -1,5 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import {store, StoreType} from "./Redax/state";
+import {store} from "./Redax/state";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -12,8 +12,7 @@ let rerenderEntireTree = () => {
         <React.StrictMode>
             <App store={store.getState()}
                  // .bind(store) - ривязывает напрямую наш store к this
-                 addPost={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}/>
+                 dispatch={store.dispatch.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
