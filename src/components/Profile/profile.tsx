@@ -2,7 +2,7 @@ import React from "react";
 import c from './profile.module.css'
 import {MyPosts} from "./MyPosts/myposts";
 import {ProfileInfo} from "./ProfileInfo/profileInfo";
-import {ProfilePageType, updateNewPostText} from "../../Redax/state";
+import {ProfilePageType} from "../../Redax/state";
 
 type ProfilePropsType = {
     profilePage: ProfilePageType
