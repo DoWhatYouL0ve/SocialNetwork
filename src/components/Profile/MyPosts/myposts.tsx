@@ -4,7 +4,7 @@ import {Post} from './Post/post'
 import {
     ActionTypes,
     addPostActionCreator,
-    PostMessageType, updateNewPostTextActionCreater} from "../../../Redax/state";
+    PostMessageType, updateNewPostTextActionCreator} from "../../../Redax/state";
 
 
 type MyPostPropsType = {
@@ -23,7 +23,7 @@ export const MyPosts = (props: MyPostPropsType) => {
     }
 
     const newPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewPostTextActionCreater(e.currentTarget.value))
+        props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
     }
 
     return (

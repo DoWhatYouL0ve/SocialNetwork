@@ -22,6 +22,7 @@ export type ProfilePageType = {
 export type MessagesPageType = {
     dialogsData: Array<DialogType>
     messagesData: Array<MessageType>
+    newMessageText: string
 }
 
 export type StateType = {
@@ -30,7 +31,7 @@ export type StateType = {
 }
 
 // an example of auto type difinition for our action creator functions
-export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreater>
+export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator>
 
 
 export type StoreType = {
@@ -43,6 +44,8 @@ export type StoreType = {
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+export const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export let store: StoreType = {
     _state: {
@@ -70,7 +73,9 @@ export let store: StoreType = {
                 {id: 4, message: 'have you ever ride a horse?'},
                 {id: 5, message: 'Nice to see you'},
                 {id: 6, message: 'God bless this moment'}
-            ]}
+            ],
+            newMessageText: ''
+        }
     },
     _callSubscriber () {
         console.log('State is changed')
@@ -94,17 +99,25 @@ export let store: StoreType = {
         }else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText =  action.newText
             this._callSubscriber()
+        }else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.body
+            this._callSubscriber()
+        }else if (action.type === SEND_MESSAGE) {
+            let body = this._state.messagesPage.newMessageText
+            this._state.messagesPage.newMessageText = ''
+            this._state.messagesPage.messagesData.push({id: 7, message: body})
+            this._callSubscriber()
         }
     }
 }
 
 //an example if you need to refactor a function with an object inside and "as const" in the end
 export const addPostActionCreator = () => ({type: ADD_POST} as const)
-
-
-export const updateNewPostTextActionCreater = (newText: string) => {
+export const sentMessageActionCreator = () => ({type: SEND_MESSAGE} as const)
+export const updateNewPostTextActionCreator = (newText: string) => {
     return{
         type: UPDATE_NEW_POST_TEXT,
         newText: newText
     } as const
 }
+export const updateNewMessageTextActionCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, body: body}as const)
