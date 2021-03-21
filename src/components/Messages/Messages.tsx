@@ -4,9 +4,9 @@ import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/message";
 import {
     ActionTypes,
-    MessagesPageType, sentMessageActionCreator,
-    updateNewMessageTextActionCreator
+    MessagesPageType
 } from "../../Redax/state";
+import {sentMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redax/messages-reducer";
 
 type MessagesPropsType = {
     messagesPage: MessagesPageType

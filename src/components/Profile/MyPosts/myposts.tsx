@@ -3,8 +3,8 @@ import c from './myposts.module.css'
 import {Post} from './Post/post'
 import {
     ActionTypes,
-    addPostActionCreator,
-    PostMessageType, updateNewPostTextActionCreator} from "../../../Redax/state";
+    PostMessageType} from "../../../Redax/state";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redax/profile-reducer";
 
 
 type MyPostPropsType = {

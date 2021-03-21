@@ -1,3 +1,18 @@
+import {
+    ADD_POST,
+    addPostActionCreator,
+    profileReducer,
+    UPDATE_NEW_POST_TEXT,
+    updateNewPostTextActionCreator
+} from "./profile-reducer";
+import {
+    messagesReducer,
+    SEND_MESSAGE, sentMessageActionCreator,
+    UPDATE_NEW_MESSAGE_TEXT,
+    updateNewMessageTextActionCreator
+} from "./messages-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+
 export type MessageType = {
     message: string
     id: number
@@ -28,6 +43,7 @@ export type MessagesPageType = {
 export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
+    sidebar: {}
 }
 
 // an example of auto type difinition for our action creator functions
@@ -41,11 +57,6 @@ export type StoreType = {
     getState: () => StateType
     dispatch: (action: ActionTypes) => void
 }
-
-export const ADD_POST = 'ADD-POST'
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-export const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export let store: StoreType = {
     _state: {
@@ -75,7 +86,9 @@ export let store: StoreType = {
                 {id: 6, message: 'God bless this moment'}
             ],
             newMessageText: ''
-        }
+        },
+
+        sidebar: {}
     },
     _callSubscriber () {
         console.log('State is changed')
@@ -87,37 +100,13 @@ export let store: StoreType = {
     this._callSubscriber = observer // pattern observer похож на pattern publisher
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let newPost: PostMessageType = {
-                id: 5,
-                postMessage: this._state.profilePage.newPostText,
-                like: 0
-            }
-            this._state.profilePage.postMessageData.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber()
-        }else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText =  action.newText
-            this._callSubscriber()
-        }else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.messagesPage.newMessageText = action.body
-            this._callSubscriber()
-        }else if (action.type === SEND_MESSAGE) {
-            let body = this._state.messagesPage.newMessageText
-            this._state.messagesPage.newMessageText = ''
-            this._state.messagesPage.messagesData.push({id: 7, message: body})
-            this._callSubscriber()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber()
     }
 }
 
 //an example if you need to refactor a function with an object inside and "as const" in the end
-export const addPostActionCreator = () => ({type: ADD_POST} as const)
-export const sentMessageActionCreator = () => ({type: SEND_MESSAGE} as const)
-export const updateNewPostTextActionCreator = (newText: string) => {
-    return{
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}
-export const updateNewMessageTextActionCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, body: body}as const)
+
