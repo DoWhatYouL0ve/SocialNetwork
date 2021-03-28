@@ -69,22 +69,22 @@ export let store: StoreType = {
             ]},
 
         messagesPage: {
-            dialogsData: [
-                {id: 1, name: 'Dimych'},
-                {id: 2, name: 'Bob'},
-                {id: 3, name: 'Jack'},
-                {id: 4, name: 'Tom'},
-                {id: 5, name: 'Helen'},
-                {id: 6, name: 'Daniel'}
-            ],
-            messagesData: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'How are you?'},
-                {id: 3, message: 'Did you go to the cinema yesterday?'},
-                {id: 4, message: 'have you ever ride a horse?'},
-                {id: 5, message: 'Nice to see you'},
-                {id: 6, message: 'God bless this moment'}
-            ],
+    dialogsData: [
+        {id: 1, name: 'Dimych'},
+        {id: 2, name: 'Bob'},
+        {id: 3, name: 'Jack'},
+        {id: 4, name: 'Tom'},
+        {id: 5, name: 'Helen'},
+        {id: 6, name: 'Daniel'}
+    ],
+        messagesData: [
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'How are you?'},
+        {id: 3, message: 'Did you go to the cinema yesterday?'},
+        {id: 4, message: 'have you ever ride a horse?'},
+        {id: 5, message: 'Nice to see you'},
+        {id: 6, message: 'God bless this moment'}
+    ],
             newMessageText: ''
         },
 
@@ -107,6 +107,3 @@ export let store: StoreType = {
         this._callSubscriber()
     }
 }
-
-//an example if you need to refactor a function with an object inside and "as const" in the end
-

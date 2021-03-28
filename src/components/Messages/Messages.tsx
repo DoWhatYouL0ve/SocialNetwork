@@ -5,7 +5,7 @@ import {Message} from "./Message/message";
 import {
     ActionTypes,
     MessagesPageType
-} from "../../Redax/state";
+} from "../../Redax/store";
 import {sentMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redax/messages-reducer";
 
 type MessagesPropsType = {

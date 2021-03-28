@@ -1,7 +1,7 @@
 import styles from "./dialog.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import {DialogType} from "../../../Redax/state";
+import {DialogType} from "../../../Redax/store";
 
 
 export const Dialog = (props: DialogType) => {
