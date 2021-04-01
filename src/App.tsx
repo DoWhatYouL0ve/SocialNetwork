@@ -3,12 +3,12 @@ import './App.css';
 import {Header} from "./components/Header/header";
 import {Nav} from "./components/Nav/nav";
 import {Profile} from "./components/Profile/profile";
-import {Messages} from './components/Messages/Messages'
 import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./components/News/news";
 import {Music} from "./components/Music/music";
 import {Settings} from "./components/Settings/settings";
 import {ActionTypes, StateType} from "./Redax/store";
+import {MessagesContainer} from "./components/Messages/MessagesContainer";
 
 type AppPropsType = {
     store: StateType
@@ -27,7 +27,7 @@ function App(props: AppPropsType) {
                     <Route path={'/profile'}
                            render={ () => <Profile profilePage={props.store.profilePage} dispatch={props.dispatch}/>}/>
                     <Route path={'/messages'}
-                           render={() => <Messages messagesPage={props.store.messagesPage} dispatch={props.dispatch}/>}/>
+                           render={() => <MessagesContainer messagesPage={props.store.messagesPage} dispatch={props.dispatch}/>}/>
                     <Route path={'/news'} render={() => <News />}/>
                     <Route path={'/music'} render={ () => <Music />}/>
                     <Route path={'/settings'} render={ () => <Settings /> }/>

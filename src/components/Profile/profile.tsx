@@ -1,8 +1,8 @@
 import React from "react";
 import c from './profile.module.css'
-import {MyPosts} from "./MyPosts/myposts";
 import {ProfileInfo} from "./ProfileInfo/profileInfo";
 import {ActionTypes, ProfilePageType} from "../../Redax/store";
+import {MyPostsContainer} from "./MyPosts/mypostsContainer";
 
 type ProfilePropsType = {
     profilePage: ProfilePageType
@@ -14,7 +14,7 @@ export const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo />
-            <MyPosts postMessageData={props.profilePage.postMessageData}
+            <MyPostsContainer postMessageData={props.profilePage.postMessageData}
                      dispatch={props.dispatch}
                      newPostText={props.profilePage.newPostText}/>
         </div>

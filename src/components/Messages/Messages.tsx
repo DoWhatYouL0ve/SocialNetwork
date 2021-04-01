@@ -1,16 +1,14 @@
 import React, {ChangeEvent} from "react";
 import styles from './messanges.module.css';
+import {MessagesPageType} from "../../Redax/store";
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/message";
-import {
-    ActionTypes,
-    MessagesPageType
-} from "../../Redax/store";
-import {sentMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redax/messages-reducer";
+
 
 type MessagesPropsType = {
     messagesPage: MessagesPageType
-    dispatch: (action: ActionTypes) => void
+    onNewMessageChange: (text: string) => void
+    onSendMessageClick: () => void
 }
 
 export const Messages = (props: MessagesPropsType) => {
@@ -20,11 +18,11 @@ export const Messages = (props: MessagesPropsType) => {
     let messageElements = props.messagesPage.messagesData.map( m => <Message message={m.message} />)
     let newMessageText = props.messagesPage.newMessageText
     let onSendMessageClick = () => {
-        props.dispatch(sentMessageActionCreator())
+        props.onSendMessageClick()
     }
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
-        props.dispatch(updateNewMessageTextActionCreator(body))
+        props.onNewMessageChange(body)
     }
 
     return (
@@ -35,10 +33,9 @@ export const Messages = (props: MessagesPropsType) => {
             <div className={styles.messages}>
                 <div>{messageElements}</div>
                 <div>
-                    <div><textarea
-                        value={newMessageText}
-                        placeholder={'Enter your massege'}
-                        onChange={onNewMessageChange}></textarea></div>
+                    <div><textarea value={newMessageText}
+                                   placeholder={'Enter your massege'}
+                                   onChange={onNewMessageChange}></textarea></div>
                     <div><button onClick={onSendMessageClick}>Send</button></div>
                 </div>
             </div>

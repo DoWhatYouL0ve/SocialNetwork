@@ -1,16 +1,15 @@
 import React, {ChangeEvent} from "react";
 import c from './myposts.module.css'
 import {Post} from './Post/post'
-import {
-    ActionTypes,
-    PostMessageType} from "../../../Redax/store";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redax/profile-reducer";
+import {PostMessageType} from "../../../Redax/store";
+
 
 
 type MyPostPropsType = {
+    addPost: () => void
+    newPostChange: (text:string) => void
     postMessageData: Array<PostMessageType>
     newPostText: string
-    dispatch: (action: ActionTypes) => void
 }
 
 
@@ -19,11 +18,11 @@ export const MyPosts = (props: MyPostPropsType) => {
     let postData = props.postMessageData.map( p => <Post postMessage={p.postMessage} like={p.like}/>)
 
     let addPost = () => {
-            props.dispatch(addPostActionCreator())
+        props.addPost()
     }
 
     const newPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
+        props.newPostChange(e.currentTarget.value)
     }
 
     return (
