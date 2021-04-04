@@ -2,23 +2,31 @@ import React from "react";
 import {ActionTypes, MessagesPageType} from "../../Redax/store";
 import {sentMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redax/messages-reducer";
 import {Messages} from "./Messages";
+import {StoreContext} from "../../StoreContext";
 
-type MessagesPropsType = {
+/*type MessagesPropsType = {
     messagesPage: MessagesPageType
     dispatch: (action: ActionTypes) => void
-}
+}*/
 
-export const MessagesContainer = (props: MessagesPropsType) => {
+export const MessagesContainer = () => {
 
-    let onSendMessageClick = () => {
-        props.dispatch(sentMessageActionCreator())
-    }
-    let onNewMessageChange = (text: string) => {
-        props.dispatch(updateNewMessageTextActionCreator(text))
-    }
+    return (
+        <StoreContext.Consumer>
+            {(store) => {
+            let onSendMessageClick = () => {
+                store.dispatch(sentMessageActionCreator())
+            }
+            let onNewMessageChange = (text: string) => {
+                store.dispatch(updateNewMessageTextActionCreator(text))
+            }
 
-    return ( <Messages onNewMessageChange={onNewMessageChange}
-                       onSendMessageClick={onSendMessageClick}
-                       messagesPage={props.messagesPage}
-                       />)
+            return <Messages onNewMessageChange={onNewMessageChange}
+                             onSendMessageClick={onSendMessageClick}
+                             messagesPage={store.getState().messagesPage}
+            />
+        }
+        }
+        </StoreContext.Consumer>
+    )
 }

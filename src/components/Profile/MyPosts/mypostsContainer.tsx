@@ -1,32 +1,44 @@
 import React from "react";
 import {
     ActionTypes,
-    PostMessageType} from "../../../Redax/store";
+    PostMessageType
+} from "../../../Redax/store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redax/profile-reducer";
 import {MyPosts} from "./myposts";
+import {StoreContext} from "../../../StoreContext";
 
 
-type MyPostPropsContainerType = {
+/*type MyPostPropsContainerType = {
     postMessageData: Array<PostMessageType>
     newPostText: string
     dispatch: (action: ActionTypes) => void
-}
+}*/
+// export const MyPostsContainer = (props: MyPostPropsContainerType) => {
 
+export const MyPostsContainer = () => {
 
-export const MyPostsContainer = (props: MyPostPropsContainerType) => {
+    //<StoreContext.Consumer>
+    //             SHOULD ALWAYS STAR FROM A NEW LINE LIKE THIS EXAMPLE!!!
+    //             {(store) => {
 
-    let addPost = () => {
-        // props.store.dispatch(addPostActionCreator())
-        props.dispatch(addPostActionCreator())
-    }
+    return (
+        <StoreContext.Consumer>
 
-    const newPostChange = (text: string) => {
-        // props.store.dispatch(updateNewPostTextActionCreator(text))
-        props.dispatch(updateNewPostTextActionCreator(text))
-    }
+            {(store) => {
 
-    return ( <MyPosts newPostChange={newPostChange}
-                      addPost={addPost}
-                      postMessageData={props.postMessageData}
-                      newPostText={props.newPostText}/>  )
+            let addPost = () => {
+                store.dispatch(addPostActionCreator())
+            }
+            const newPostChange = (text: string) => {
+                store.dispatch(updateNewPostTextActionCreator(text))
+            }
+
+            return <MyPosts newPostChange={newPostChange}
+                            addPost={addPost}
+                            postMessageData={store.getState().profilePage.postMessageData}
+                            newPostText={store.getState().profilePage.newPostText}/>
+        }
+        }
+        </StoreContext.Consumer>
+    )
 }

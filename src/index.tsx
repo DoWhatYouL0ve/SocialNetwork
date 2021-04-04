@@ -4,15 +4,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
+import {Provider} from "./StoreContext";
 
 
 let rerenderEntireTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store.getState()}
-                 // .bind(store) - ривязывает напрямую наш store к this
-                 dispatch={store.dispatch.bind(store)}/>
+            <Provider store={store}>
+            </Provider>
+                <App />
         </React.StrictMode>,
         document.getElementById('root')
     );
@@ -24,3 +24,5 @@ store.subscribe(rerenderEntireTree)
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+

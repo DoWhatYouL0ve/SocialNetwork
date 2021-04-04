@@ -107,3 +107,4 @@ export let store: StoreType = {
         this._callSubscriber()
     }
 }
+
