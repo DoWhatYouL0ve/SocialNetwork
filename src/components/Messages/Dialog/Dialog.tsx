@@ -1,7 +1,7 @@
 import styles from "./dialog.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import {DialogType} from "../../../Redax/store";
+import {DialogType} from "../../../Redax/messages-reducer";
 
 
 export const Dialog = (props: DialogType) => {

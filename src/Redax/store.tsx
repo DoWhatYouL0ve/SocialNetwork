@@ -13,23 +13,20 @@ import {
 } from "./messages-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
-export type MessageType = {
+type MessageType = {
     message: string
     id: number
 }
-
-export type DialogType = {
+type DialogType = {
     name: string
     id: number
 }
-
-export type PostMessageType = {
+type PostMessageType = {
     id: number
     like: number
     postMessage: string
 }
-
-export type ProfilePageType = {
+type ProfilePageType = {
     postMessageData: Array<PostMessageType>
     newPostText: string
 }
@@ -47,7 +44,7 @@ export type StateType = {
 }
 
 // an example of auto type difinition for our action creator functions
-export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator>
+type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator>
 
 
 export type StoreType = {
@@ -107,4 +104,6 @@ export let store: StoreType = {
         this._callSubscriber()
     }
 }
+
+export default 3
 

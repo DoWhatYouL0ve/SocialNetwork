@@ -1,17 +1,27 @@
-import {ActionTypes, PostMessageType, ProfilePageType} from "./store";
+import {ActionTypes} from "./redux-store";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+
+export type PostMessageType = {
+    id: number
+    like: number
+    postMessage: string
+}
+
 
 let initialState = {
         newPostText: '',
         postMessageData: [
             {id: 1, like: 15, postMessage: 'Hi, how are you?'},
-            {id: 2, like: 15, postMessage: "it'styles my firts post"},
+            {id: 2, like: 15, postMessage: "it styles my first post"},
             {id: 3, like: 15, postMessage: "I'm OK"}
-        ]}
+        ]
+}
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes) => {
+export type InitialStateType = typeof initialState
+
+export const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
 
     switch (action.type) {
         case ADD_POST:

@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import c from './myposts.module.css'
 import {Post} from './Post/post'
-import {PostMessageType} from "../../../Redax/store";
+import {PostMessageType} from "../../../Redax/profile-reducer";
 
 
 
@@ -14,7 +14,7 @@ type MyPostPropsType = {
 
 
 export const MyPosts = (props: MyPostPropsType) => {
-
+    debugger
     let postData = props.postMessageData.map( p => <Post postMessage={p.postMessage} like={p.like}/>)
 
     let addPost = () => {
