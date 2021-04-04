@@ -7,13 +7,8 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./components/News/news";
 import {Music} from "./components/Music/music";
 import {Settings} from "./components/Settings/settings";
-import {StateType} from "./Redax/store";
 import {MessagesContainer} from "./components/Messages/MessagesContainer";
 
-/*type AppPropsType = {
-    store: StateType
-    children: React.ReactNode
-}*/
 
 //взять шаблон для соц сети и делать под него проект
 

@@ -8,13 +8,6 @@ import {MyPosts} from "./myposts";
 import {StoreContext} from "../../../StoreContext";
 
 
-/*type MyPostPropsContainerType = {
-    postMessageData: Array<PostMessageType>
-    newPostText: string
-    dispatch: (action: ActionTypes) => void
-}*/
-// export const MyPostsContainer = (props: MyPostPropsContainerType) => {
-
 export const MyPostsContainer = () => {
 
     //<StoreContext.Consumer>
