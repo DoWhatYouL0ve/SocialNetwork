@@ -20,7 +20,6 @@ let initialState = {
         {id: 1, name: 'Dimych'},
         {id: 2, name: 'Bob'},
         {id: 3, name: 'Jack'},
-
         {id: 4, name: 'Tom'},
         {id: 5, name: 'Helen'},
         {id: 6, name: 'Daniel'}
@@ -37,16 +36,12 @@ let initialState = {
 }
 
 export const messagesReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
-
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.body
-            return state
+            return {...state, newMessageText: action.body}
         case SEND_MESSAGE:
             let body = state.newMessageText
-            state.newMessageText = ''
-            state.messagesData.push({id: 7, message: body})
-            return state
+            return {...state, newMessageText: '', messagesData: [...state.messagesData, {id: 7, message: body}]}
         default:
             return state
     }

@@ -14,8 +14,8 @@ let initialState = {
         newPostText: '',
         postMessageData: [
             {id: 1, like: 15, postMessage: 'Hi, how are you?'},
-            {id: 2, like: 15, postMessage: "it styles my first post"},
-            {id: 3, like: 15, postMessage: "I'm OK"}
+            {id: 2, like: 13, postMessage: "it styles my first post"},
+            {id: 3, like: 17, postMessage: "I'm OK"}
         ]
 }
 
@@ -24,18 +24,17 @@ export type InitialStateType = typeof initialState
 export const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
 
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let newPost: PostMessageType = {
                 id: 5,
                 postMessage: state.newPostText,
                 like: 0
             }
-            state.postMessageData.push(newPost)
-            state.newPostText = ''
-            return state
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return state
+            return {...state, postMessageData: [...state.postMessageData, newPost], newPostText: ''}
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            return {...state, newPostText: action.newText}
+        }
         default:
             return state
     }

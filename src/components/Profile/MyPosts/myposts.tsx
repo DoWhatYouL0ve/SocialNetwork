@@ -14,7 +14,6 @@ type MyPostPropsType = {
 
 
 export const MyPosts = (props: MyPostPropsType) => {
-    debugger
     let postData = props.postMessageData.map( p => <Post postMessage={p.postMessage} like={p.like}/>)
 
     let addPost = () => {
