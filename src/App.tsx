@@ -8,6 +8,7 @@ import {News} from "./components/News/news";
 import {Music} from "./components/Music/music";
 import {Settings} from "./components/Settings/settings";
 import {MessagesContainer} from "./components/Messages/MessagesContainer";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 //взять шаблон для соц сети и делать под него проект
@@ -23,6 +24,7 @@ function App() {
                            render={ () => <Profile />}/>
                     <Route path={'/messages'}
                            render={() => <MessagesContainer />}/>
+                    <Route path={'/users'} render={() => <UsersContainer />}/>
                     <Route path={'/news'} render={() => <News />}/>
                     <Route path={'/music'} render={ () => <Music />}/>
                     <Route path={'/settings'} render={ () => <Settings /> }/>

@@ -12,6 +12,9 @@ export const Nav = () => {
                 <NavLink to="/messages" activeClassName={a.activelink}>Messages</NavLink>
             </div>
             <div className={a.item}>
+                <NavLink to="/users" activeClassName={a.activelink}>Users</NavLink>
+            </div>
+            <div className={a.item}>
                 <NavLink to="/news" activeClassName={a.activelink}>News</NavLink>
             </div>
             <div className={a.item}>
