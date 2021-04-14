@@ -9,8 +9,13 @@ type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 // class component example
 export class Users extends React.Component<UsersPropsType> {
-    constructor(props: UsersPropsType) {
+    // constructor creates object, but only once in the very beginning.
+    // If we don't add in it any code, we could skip this step because it'll created automatically
+    /*constructor(props: UsersPropsType) {
         super(props);
+    }*/
+
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.setUsers(response.data.items)
         })

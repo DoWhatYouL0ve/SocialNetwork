@@ -53,7 +53,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
                 }return u
                 })}
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: [...state.users, ...action.users]} //- дублировало users в массиве.
+            // 54 урок в комментариях решение
+            // return {...state, users: [...action.users]}
         default:
             return state
     }
