@@ -6,10 +6,10 @@ import {Dispatch} from "redux";
 import {followActionCreator, setUsersActionCreator, unfollowActionCreator, UserType} from "../../Redax/users-reducer";
 
 
-type MapStateToPropsType = {
+export type MapStateToPropsType = {
     users: UserType[]
 }
-type MapDispatchToPropsType = {
+export type MapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void

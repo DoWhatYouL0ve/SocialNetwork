@@ -1,23 +1,19 @@
 import React from "react";
-import {UserType} from "../../Redax/users-reducer";
 import styles from '../Users/users.module.css'
+import {MapDispatchToPropsType, MapStateToPropsType} from "./UsersContainer";
+import axios from "axios";
+import default_user from '../../assets/images/default_user.png'
 
-type UsersPropsType = {
-    users: UserType[]
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setUsers: (users: UserType[]) => void
-}
+type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 export const Users = (props: UsersPropsType) => {
-debugger
+
     if (props.users.length === 0) {
-        props.setUsers( [
-            {id: 1, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: true, fullName: 'Vladimir', status: 'Hi, how are you?', location: {city: 'Wroclaw', country: 'Poland'}},
-            {id: 2, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: true, fullName: 'Bob', status: 'Life is good!', location: {city: 'Moscow', country: 'Russia'}},
-            {id: 3, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: false, fullName: 'David', status: 'Keep going...', location: {city: 'Berlin', country: 'Germany'}},
-            {id: 4, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: false, fullName: 'John', status: 'I\'m on my way', location: {city: 'Paris', country: 'France'}}
-        ])
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items)
+        })
+
     }
 
     return (
@@ -25,7 +21,7 @@ debugger
             {props.users.map( u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photoUrl} alt="" className={styles.photo} />
+                        <img src={u.photos.small !== null ? u.photos.small : default_user} alt="" className={styles.photo} />
                     </div>
                     <div>
                         {u.followed?
@@ -35,12 +31,12 @@ debugger
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullName}</div>
+                        <div>{u.name}</div>
                         <div>{u.status}</div>
                     </span>
                     <span>
-                        <div>{u.location.country}</div>
-                        <div>{u.location.city}</div>
+                        <div>{'u.location.country'}</div>
+                        <div>{'u.location.city'}</div>
                     </span>
                 </span>
             </div>)}
