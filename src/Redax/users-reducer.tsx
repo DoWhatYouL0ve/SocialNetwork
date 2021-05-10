@@ -3,6 +3,8 @@ import {ActionTypes} from "./redux-store";
 export const FOLLOW = 'FOLLOW'
 export const UNFOLLOW = 'UNFOLLOW'
 export const SET_USERS = 'SET-USERS'
+export const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+export const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 
 type UserLocationType = {
     city: string
@@ -24,17 +26,18 @@ export type UserType = {
 }
 
 let initialState: InitialStateType = {
-    users: [
-        /*{id: 1, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: true, fullName: 'Vladimir', status: 'Hi, how are you?', location: {city: 'Wroclaw', country: 'Poland'}},
-        {id: 2, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: true, fullName: 'Bob', status: 'Life is good!', location: {city: 'Moscow', country: 'Russia'}},
-        {id: 3, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: false, fullName: 'David', status: 'Keep going...', location: {city: 'Berlin', country: 'Germany'}},
-        {id: 4, photoUrl: 'https://mysuperparis.com/upload/resize_cache/iblock/82b/400_400_1/Avatarki_kruglye_09.png', followed: false, fullName: 'John', status: 'I\'m on my way', location: {city: 'Paris', country: 'France'}}*/
-    ]
+    users: [ ],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 //export type InitialStateType = typeof initialState
 export type InitialStateType = {
     users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
@@ -53,9 +56,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
                 }return u
                 })}
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]} //- дублировало users в массиве.
-            // 54 урок в комментариях решение
-            // return {...state, users: [...action.users]}
+            return {...state, users: action.users}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+        case SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.totalCount}
         default:
             return state
     }
@@ -65,3 +70,5 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
 export const followActionCreator = (userId: number) => ({type: FOLLOW, userId} as const)
 export const unfollowActionCreator = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsersActionCreator = (users: UserType[]) => ({type: SET_USERS, users} as const)
+export const setCurrentPageActionCreator = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
+export const setTotalUsersCountActionCreator = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
