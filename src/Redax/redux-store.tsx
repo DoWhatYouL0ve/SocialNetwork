@@ -5,12 +5,12 @@ import {sidebarReducer} from "./sidebar-reducer";
 import {
     followActionCreator,
     setCurrentPageActionCreator, setTotalUsersCountActionCreator,
-    setUsersActionCreator,
+    setUsersActionCreator, toggleIsFetchingActionCreator,
     unfollowActionCreator,
     usersReducer
 } from "./users-reducer";
 
-export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator> | ReturnType<typeof followActionCreator> | ReturnType<typeof unfollowActionCreator> | ReturnType<typeof setUsersActionCreator> | ReturnType<typeof setCurrentPageActionCreator> | ReturnType<typeof setTotalUsersCountActionCreator>
+export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator> | ReturnType<typeof followActionCreator> | ReturnType<typeof unfollowActionCreator> | ReturnType<typeof setUsersActionCreator> | ReturnType<typeof setCurrentPageActionCreator> | ReturnType<typeof setTotalUsersCountActionCreator> | ReturnType<typeof toggleIsFetchingActionCreator>
 
 let rootReducer = combineReducers({
     // the same as: profileReducer: profileReducer if you see only profileReducer in object

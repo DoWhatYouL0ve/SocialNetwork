@@ -5,6 +5,7 @@ export const UNFOLLOW = 'UNFOLLOW'
 export const SET_USERS = 'SET-USERS'
 export const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 export const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
+export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
 type UserLocationType = {
     city: string
@@ -29,7 +30,8 @@ let initialState: InitialStateType = {
     users: [ ],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 //export type InitialStateType = typeof initialState
@@ -38,6 +40,7 @@ export type InitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
@@ -61,6 +64,8 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.totalCount}
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -72,3 +77,4 @@ export const unfollowActionCreator = (userId: number) => ({type: UNFOLLOW, userI
 export const setUsersActionCreator = (users: UserType[]) => ({type: SET_USERS, users} as const)
 export const setCurrentPageActionCreator = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setTotalUsersCountActionCreator = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
+export const toggleIsFetchingActionCreator = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
