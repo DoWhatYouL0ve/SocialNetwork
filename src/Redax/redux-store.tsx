@@ -3,14 +3,14 @@ import {addPostActionCreator, profileReducer, updateNewPostTextActionCreator} fr
 import {messagesReducer, sentMessageActionCreator, updateNewMessageTextActionCreator} from "./messages-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
-    followActionCreator,
-    setCurrentPageActionCreator, setTotalUsersCountActionCreator,
-    setUsersActionCreator, toggleIsFetchingActionCreator,
-    unfollowActionCreator,
+    follow,
+    setCurrentPage, setTotalUsersCount,
+    setUsers, toggleIsFetching,
+    unfollow,
     usersReducer
 } from "./users-reducer";
 
-export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator> | ReturnType<typeof followActionCreator> | ReturnType<typeof unfollowActionCreator> | ReturnType<typeof setUsersActionCreator> | ReturnType<typeof setCurrentPageActionCreator> | ReturnType<typeof setTotalUsersCountActionCreator> | ReturnType<typeof toggleIsFetchingActionCreator>
+export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator> | ReturnType<typeof follow> | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching>
 
 let rootReducer = combineReducers({
     // the same as: profileReducer: profileReducer if you see only profileReducer in object

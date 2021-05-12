@@ -72,9 +72,10 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
 }
 
 //an example if you need to refactor a function with an object inside and "as const" in the end
-export const followActionCreator = (userId: number) => ({type: FOLLOW, userId} as const)
-export const unfollowActionCreator = (userId: number) => ({type: UNFOLLOW, userId} as const)
-export const setUsersActionCreator = (users: UserType[]) => ({type: SET_USERS, users} as const)
-export const setCurrentPageActionCreator = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
-export const setTotalUsersCountActionCreator = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
-export const toggleIsFetchingActionCreator = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
+export const follow = (userId: number) => ({type: FOLLOW, userId} as const)
+export const unfollow = (userId: number) => ({type: UNFOLLOW, userId} as const)
+export const setUsers = (users: UserType[]) => ({type: SET_USERS, users} as const)
+export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
+export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
+export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
+

@@ -1,12 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redax/redux-store";
-import {Dispatch} from "redux";
 import {
-    followActionCreator,
-    setCurrentPageActionCreator, setTotalUsersCountActionCreator,
-    setUsersActionCreator, toggleIsFetchingActionCreator,
-    unfollowActionCreator,
+    follow,
+    setCurrentPage, setTotalUsersCount,
+    setUsers, toggleIsFetching,
+    unfollow,
     UserType
 } from "../../Redax/users-reducer";
 import axios from "axios";
@@ -128,27 +127,34 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+/*const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         follow: (userId) => {
-            dispatch(followActionCreator(userId))
+            dispatch(follow(userId))
         },
         unfollow: (userId) => {
-            dispatch(unfollowActionCreator(userId))
+            dispatch(unfollow(userId))
         },
         setUsers: (users) => {
-            dispatch(setUsersActionCreator(users))
+            dispatch(setUsers(users))
         },
         setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageActionCreator(pageNumber))
+            dispatch(setCurrentPage(pageNumber))
         },
         setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountActionCreator(totalCount))
+            dispatch(setTotalUsersCount(totalCount))
         },
         toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingActionCreator(isFetching))
+            dispatch(toggleIsFetching(isFetching))
         }
     }
-}
+}*/
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersPageContainer)
+export const UsersContainer = connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching
+    })(UsersPageContainer)
