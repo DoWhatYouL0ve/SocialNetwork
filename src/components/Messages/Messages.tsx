@@ -1,9 +1,22 @@
 import React, {ChangeEvent} from "react";
 import styles from './messanges.module.css';
-import {MessagesPageType} from "../../Redax/store";
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/message";
 
+type MessageType = {
+    message: string
+    id: number
+}
+type DialogType = {
+    name: string
+    id: number
+}
+
+type MessagesPageType = {
+    dialogsData: Array<DialogType>
+    messagesData: Array<MessageType>
+    newMessageText: string
+}
 
 type MessagesPropsType = {
     messagesPage: MessagesPageType

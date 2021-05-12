@@ -31,13 +31,13 @@ type ProfilePageType = {
     newPostText: string
 }
 
-export type MessagesPageType = {
+type MessagesPageType = {
     dialogsData: Array<DialogType>
     messagesData: Array<MessageType>
     newMessageText: string
 }
 
-export type StateType = {
+type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagesPageType
     sidebar: {}
@@ -47,7 +47,7 @@ export type StateType = {
 type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator>
 
 
-export type StoreType = {
+type StoreType = {
     _state: StateType
     subscribe: (observer: () => void) => void
     _callSubscriber: () => void
@@ -55,7 +55,7 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export let store: StoreType = {
+/*let store: StoreType = {
     _state: {
         profilePage: {
             newPostText: '',
@@ -103,7 +103,7 @@ export let store: StoreType = {
 
         this._callSubscriber()
     }
-}
+}*/
 
 export default 3
 

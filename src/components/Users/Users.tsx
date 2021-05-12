@@ -2,6 +2,7 @@ import React from "react";
 import styles from '../Users/users.module.css'
 import default_user from "../../assets/images/default_user.png";
 import {UserType} from "../../Redax/users-reducer";
+import { NavLink } from "react-router-dom";
 
 type UsersPropsType = {
     onPageChanged: (p: number) => void
@@ -32,7 +33,9 @@ export const Users = (props: UsersPropsType) => {
         {props.users.map( u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photos.small !== null ? u.photos.small : default_user} alt="" className={styles.photo} />
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small !== null ? u.photos.small : default_user} alt="" className={styles.photo} />
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed?

@@ -1,5 +1,5 @@
 import {combineReducers, createStore } from "redux";
-import {addPostActionCreator, profileReducer, updateNewPostTextActionCreator} from "./profile-reducer";
+import {addPostActionCreator, profileReducer, setUserProfile, updateNewPostTextActionCreator} from "./profile-reducer";
 import {messagesReducer, sentMessageActionCreator, updateNewMessageTextActionCreator} from "./messages-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
@@ -10,7 +10,7 @@ import {
     usersReducer
 } from "./users-reducer";
 
-export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator> | ReturnType<typeof follow> | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching>
+export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator> | ReturnType<typeof follow> | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
 
 let rootReducer = combineReducers({
     // the same as: profileReducer: profileReducer if you see only profileReducer in object
