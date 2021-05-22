@@ -1,23 +1,18 @@
-import {combineReducers, createStore } from "redux";
-import {addPostActionCreator, profileReducer, setUserProfile, updateNewPostTextActionCreator} from "./profile-reducer";
-import {messagesReducer, sentMessageActionCreator, updateNewMessageTextActionCreator} from "./messages-reducer";
+import {combineReducers, createStore} from "redux";
+import {profileReducer} from "./profile-reducer";
+import {messagesReducer} from "./messages-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {
-    follow,
-    setCurrentPage, setTotalUsersCount,
-    setUsers, toggleIsFetching,
-    unfollow,
-    usersReducer
-} from "./users-reducer";
+import {usersReducer} from "./users-reducer";
+import {authReducer} from "./auth-reducer";
 
-export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageTextActionCreator> | ReturnType<typeof sentMessageActionCreator> | ReturnType<typeof follow> | ReturnType<typeof unfollow> | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> | ReturnType<typeof toggleIsFetching> | ReturnType<typeof setUserProfile>
 
 let rootReducer = combineReducers({
     // the same as: profileReducer: profileReducer if you see only profileReducer in object
     profilePage: profileReducer,
     messagesPage: messagesReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 export type AppStateType = ReturnType<typeof rootReducer>

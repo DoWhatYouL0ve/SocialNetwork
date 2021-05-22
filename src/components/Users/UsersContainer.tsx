@@ -101,14 +101,14 @@ export const Users = (props: UsersPropsType) => {
     )
 }*/
 
-export type MapStateToPropsType = {
+type MapStateToPropsType = {
     users: UserType[]
     pageSize: number
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
 }
-export type MapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UserType[]) => void

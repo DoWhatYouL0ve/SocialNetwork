@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./components/Header/header";
 import {Nav} from "./components/Nav/nav";
 import {BrowserRouter, Route} from 'react-router-dom';
 import {News} from "./components/News/news";
@@ -9,6 +8,7 @@ import {Settings} from "./components/Settings/settings";
 import {MessagesContainer} from "./components/Messages/MessagesContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import {HeaderContainer} from "./components/Header/HeaderContainer";
 
 
 //взять шаблон для соц сети и делать под него проект
@@ -17,7 +17,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <Nav/>
                 <div className='app-wrapper-content'>
                     <Route path={'/profile/:userId?'}

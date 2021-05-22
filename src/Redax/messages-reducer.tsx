@@ -1,5 +1,3 @@
-import {ActionTypes} from "./redux-store";
-
 export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 export const SEND_MESSAGE = 'SEND-MESSAGE'
 
@@ -35,7 +33,7 @@ let initialState = {
         newMessageText: ''
 }
 
-export const messagesReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
+export const messagesReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
             return {...state, newMessageText: action.body}
@@ -50,3 +48,7 @@ export const messagesReducer = (state: InitialStateType = initialState, action: 
 //an example if you need to refactor a function with an object inside and "as const" in the end
 export const updateNewMessageTextActionCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, body: body}as const)
 export const sentMessageActionCreator = () => ({type: SEND_MESSAGE} as const)
+
+type ActionsType =
+    | ReturnType<typeof updateNewMessageTextActionCreator>
+    | ReturnType<typeof sentMessageActionCreator>

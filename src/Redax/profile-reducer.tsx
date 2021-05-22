@@ -1,4 +1,3 @@
-import {ActionTypes} from "./redux-store";
 import {UserProfileType} from "../components/Profile/ProfileContainer";
 
 export const ADD_POST = 'ADD-POST'
@@ -42,7 +41,7 @@ let initialState = {
         }
 }
 
-export type InitialStateType = typeof initialState
+type InitialStateType = typeof initialState
 
 export const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
 
@@ -75,3 +74,9 @@ export const updateNewPostTextActionCreator = (newText: string) => {
     } as const
 }
 export const setUserProfile = (profile:UserProfileType) => ({type: SET_USER_PROFILE, profile} as const)
+
+
+type ActionTypes =
+    | ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateNewPostTextActionCreator>
+    | ReturnType<typeof setUserProfile>
