@@ -5,7 +5,6 @@ import {UserProfileType} from "./ProfileContainer";
 
 type ProfilePropsType = {
     profile: UserProfileType
-    setUserProfile: (profile: UserProfileType) => void
 }
 
 export const Profile = (props: ProfilePropsType) => {

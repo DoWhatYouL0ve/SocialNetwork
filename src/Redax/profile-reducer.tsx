@@ -1,4 +1,6 @@
 import {UserProfileType} from "../components/Profile/ProfileContainer";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -73,10 +75,18 @@ export const updateNewPostTextActionCreator = (newText: string) => {
         newText: newText
     } as const
 }
-export const setUserProfile = (profile:UserProfileType) => ({type: SET_USER_PROFILE, profile} as const)
+const setUserProfile = (profile:UserProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 
 
 type ActionTypes =
     | ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof updateNewPostTextActionCreator>
     | ReturnType<typeof setUserProfile>
+
+// thunk
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
