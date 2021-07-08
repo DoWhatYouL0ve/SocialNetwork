@@ -9,6 +9,7 @@ import {
 } from "../../Redax/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../HOC/WithAuthRedirect";
 //import {usersAPI} from "../../api/api";
 
 export type UsersAPIComponentPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -140,10 +141,10 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }*/
 
-export const UsersContainer = connect(mapStateToProps, {
+export const UsersContainer = withAuthRedirect(connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
     toggleIsFollowingProgress,
     getUsers
-    })(UsersPageContainer)
+    })(UsersPageContainer))
