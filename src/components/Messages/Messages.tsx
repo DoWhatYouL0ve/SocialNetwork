@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 import styles from './messanges.module.css';
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/message";
+import { Redirect } from "react-router-dom";
 
 type MessageType = {
     message: string
@@ -22,6 +23,7 @@ type MessagesPropsType = {
     messagesPage: MessagesPageType
     onNewMessageChange: (text: string) => void
     onSendMessageClick: () => void
+    isAuth: boolean
 }
 
 export const Messages = (props: MessagesPropsType) => {
@@ -36,6 +38,10 @@ export const Messages = (props: MessagesPropsType) => {
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
         props.onNewMessageChange(body)
+    }
+
+    if (!props.isAuth) {
+        return <Redirect to={'/login'} />
     }
 
     return (

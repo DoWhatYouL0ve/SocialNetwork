@@ -13,6 +13,7 @@ import {AppStateType} from "../../Redax/redux-store";
 
 type MapStateToPropsType = {
     messagesPage: InitialStateType
+    isAuth: boolean
 }
 type MapDispatchToPropsType = {
     onNewMessageChange: (text: string) => void
@@ -21,7 +22,8 @@ type MapDispatchToPropsType = {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        messagesPage: state.messagesPage
+        messagesPage: state.messagesPage,
+        isAuth: state.auth.isAuth
     }
 }
 
