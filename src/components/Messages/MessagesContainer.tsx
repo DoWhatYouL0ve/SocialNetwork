@@ -6,7 +6,7 @@ import {
 } from "../../Redax/messages-reducer";
 import {Messages} from "./Messages";
 import {connect} from "react-redux";
-import {Dispatch} from 'redux'
+import {compose, Dispatch} from 'redux'
 import {AppStateType} from "../../Redax/redux-store";
 import {withAuthRedirect} from "../../HOC/WithAuthRedirect";
 
@@ -37,6 +37,15 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
+// for uniting all functions in a flow
+//export default compose<ComponentType>(
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Messages)
+
+// old version
+/*
 let AuthRedirectComponent = withAuthRedirect(Messages)
 
-export const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+export const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)*/
