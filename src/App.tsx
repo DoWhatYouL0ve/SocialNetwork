@@ -11,9 +11,6 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {Login} from "./components/Login/Login";
 
-
-//взять шаблон для соц сети и делать под него проект
-
 function App() {
     return (
         <BrowserRouter>
