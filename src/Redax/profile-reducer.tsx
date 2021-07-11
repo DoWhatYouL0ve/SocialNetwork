@@ -1,10 +1,11 @@
 import {UserProfileType} from "../components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 export const SET_USER_PROFILE = 'SET-USER-PROFILE'
+export const SET_USER_STATUS = 'SET-USER-STATUS'
 
 export type PostMessageType = {
     id: number
@@ -40,7 +41,8 @@ let initialState = {
                 small: "https://social-network.samuraijs.com/activecontent/images/users/2/user-small.jpg?v=0",
                 large: "https://social-network.samuraijs.com/activecontent/images/users/2/user.jpg?v=0"
             }
-        }
+        },
+        status: ''
 }
 
 type InitialStateType = typeof initialState
@@ -62,6 +64,9 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
         case SET_USER_PROFILE: {
             return {...state, profile: action.profile}
         }
+        case SET_USER_STATUS: {
+            return {...state, status: action.status}
+        }
         default:
             return state
     }
@@ -75,6 +80,7 @@ export const updateNewPostTextActionCreator = (newText: string) => {
         newText: newText
     } as const
 }
+export const setUserStatus = (status: string) => { return {type: SET_USER_STATUS, status: status} as const}
 const setUserProfile = (profile:UserProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 
 
@@ -82,11 +88,28 @@ type ActionTypes =
     | ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof updateNewPostTextActionCreator>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserStatus>
 
 // thunk
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
     usersAPI.getProfile(userId)
         .then(response => {
             dispatch(setUserProfile(response.data))
+        })
+}
+
+export const getUserStatus = (userId: string) => (dispatch: Dispatch) => {
+    profileAPI.getUserStatus(userId)
+        .then(response => {
+            dispatch(setUserStatus(response.data))
+        })
+}
+
+export const updateStatus = (status: string) => (dispatch: Dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setUserStatus(status))
+            }
         })
 }
