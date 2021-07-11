@@ -26,6 +26,13 @@ export class ProfileStatus extends Component<any, any> {
         })
     }
 
+    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
+        // if we use setState in componentDidUpdate always use some conditions to stop this method
+        if (prevProps.status !== this.props.status) {
+            this.setState({status: this.props.status})
+        }
+    }
+
     render() {
         return <div>
             {!this.state.editMode &&
